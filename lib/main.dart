@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Nike Challenge',
-      initialRoute: 'home',
+      initialRoute: 'tree',
       routes: appRoutes,
     );
   }
