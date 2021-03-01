@@ -30,7 +30,7 @@ class _HomeStorePageState extends State<HomeStorePage> {
       body: Stack(
         children: <Widget>[
           Navigator(
-            key: _navigatorKey,
+            key: _navigatorKey, //Global<NavigatorState>
             initialRoute: 'main_store',
             onGenerateRoute: (RouteSettings settings){
               WidgetBuilder builder;

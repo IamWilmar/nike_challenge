@@ -12,16 +12,16 @@ class _MainStorePageState extends State<MainStorePage> {
   @override
   void initState() {
     scrollController.addListener(() {
-      print(scrollController.offset);
+      // print(scrollController.offset);
       if (scrollController.offset < scrollAnterior - 10) {
         searchBarVisible.value = true;
       } else if (scrollController.offset > scrollAnterior + 10) {
         searchBarVisible.value = false;
       }
-      if(scrollController.offset < 0.0){
+      if (scrollController.offset < 0.0) {
         searchBarVisible.value = true;
       }
-      if(scrollController.offset > scrollController.position.maxScrollExtent){
+      if (scrollController.offset > scrollController.position.maxScrollExtent) {
         searchBarVisible.value = false;
       }
       scrollAnterior = scrollController.offset;
@@ -30,15 +30,10 @@ class _MainStorePageState extends State<MainStorePage> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    //final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -73,21 +68,52 @@ class _MainStorePageState extends State<MainStorePage> {
               decoration: BoxDecoration(
                 color: Color(0xFF1A1924),
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(35),
-                    bottomRight: Radius.circular(35)),
+                  bottomLeft: Radius.circular(35),
+                  bottomRight: Radius.circular(35),
+                ),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(child: Icon(Icons.map, color: Colors.white)),
+                        Expanded(
+                          child: Text(
+                            'travel',
+                            style: TextStyle(color: Colors.grey, fontSize: 20),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: SizedBox(),
+                        ),
+                        Expanded(
+                          child: IconButton(
+                            icon: Icon(Icons.menu, color: Colors.white),
+                            onPressed: () {},
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-              builder: (context, value, child){
-                return AnimatedPositioned(
-                  curve: Curves.easeIn,
-                  duration: Duration(seconds: 6),
-                  left: 0,
-                  right: 0,
-                  top: value ? 0 : -220,
-                  height: 220,
-                  child: child,
-                );
-              },
+            builder: (context, value, child) {
+              return AnimatedPositioned(
+                curve: Curves.easeIn,
+                duration: Duration(seconds: 6),
+                left: 0,
+                right: 0,
+                top: value ? 0 : -220,
+                height: 220,
+                child: child,
+              );
+            },
           ),
         ],
       ),
